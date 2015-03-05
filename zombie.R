@@ -14,7 +14,7 @@ jet.colors <- colorRampPalette(c("black","red","blue"))
 
 startTime <- Sys.time()
 iter <- 500
-m <- 100 # define size
+m <- 50 # define size
 
 
 
@@ -46,10 +46,10 @@ X <- array(0, c(m,m,iter)) # initialize output 3D array
 
 # AUTOMATA + ZOMBIE RULES -------------------------------------------------
 
-
+cat ("Iterations Completed: \n")
 for (k in 1:iter) {        
   
-  cat ("Iterations Completed: ", k/iter*100, "% ")
+  cat (".")
   
   #######################################
   # Starting the cell automato loop
@@ -141,13 +141,14 @@ for (k in 1:iter) {
     
   } ###Loop i
 
-  cat("...........Humans and Zombies: ", length(theLife[theLife==2]), length(theLife[theLife==1]),"\n")
+  #cat("...........Humans and Zombies: ", length(theLife[theLife==2]), length(theLife[theLife==1]),"\n")
   X[,,k] <- theLife*(0.5) # capture results     
   sqNet <- theLife #write final result to compute next step
 
 } ###Loop Step
 
-cat("\n\n\")
+cat("\n\n")
+
 print(Sys.time()-startTime)
 
 startTime <- Sys.time()
