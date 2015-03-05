@@ -1,3 +1,6 @@
+
+#Piroca???
+
 # function example - get measures of central tendency
 # and spread for a numeric vector x. The user has a
 # choice of measures and whether the results are printed.
