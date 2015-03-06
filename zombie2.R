@@ -1,4 +1,4 @@
-#
+
 #This will be the zommbie code
 #
 #05-May-2015
@@ -7,12 +7,11 @@
 #Improved plot functions 
 #levelPlot
 
-library(caTools)         # external package providing write.gif function
-library(animation)
-library(lattice)         #needed for levelplot
+
 rm(list=ls())
 
-jet.colors <- colorRampPalette(c("black","red","blue"))
+setwd("C:/Users/edbmjtx/Documents/Github")
+
 
 #Time measured
 
@@ -20,8 +19,9 @@ jet.colors <- colorRampPalette(c("black","red","blue"))
 #proc.time() - ptm
 
 startTime <- Sys.time()
-iter <- 30
-m <- 50 # define size
+iter <- 100
+
+m <- 500 # define size
 
 
 
@@ -47,7 +47,6 @@ sqNet <- matrix(as.integer(abs(rnorm(m*m)*10) %% 3),m,m)
 
 theLife <- sqNet
 
-X <- array(0, c(m,m,iter)) # initialize output 3D array
 
 
 # AUTOMATA + ZOMBIE RULES -------------------------------------------------
@@ -56,6 +55,7 @@ cat ("Iterations Completed: \n")
 
 # frames  = steps
 
+#ch.col = c("white","red","blue") # define colors
 
   for (k in 1:iter) {  
     
@@ -65,11 +65,9 @@ cat ("Iterations Completed: \n")
     if (k >= 100) {name = paste('0', k,'plot.png', sep='')}
     
   
-     png(file = name, width = 480, height = 480, units = "px", pointsize = 12)
-#    plot(1:10,rnorm(10))
+    png(file = name, width = 480, height = 480, units = "px", pointsize = 12)
     
-    
-    image(theLife, xlab="", ylab="")
+    image(theLife, xlab="", ylab="",col=c("white","red","blue"))
 
     dev.off()
     
@@ -81,6 +79,8 @@ cat ("Iterations Completed: \n")
     # iant, jant etc are periodic boundaries
     # in the m x m lattice
     #######################################
+    
+    
     
     for(i in 1:m){
       iant <- i-1
@@ -167,7 +167,7 @@ cat ("Iterations Completed: \n")
     } ###Loop i
   
     #cat("...........Humans and Zombies: ", length(theLife[theLife==2]), length(theLife[theLife==1]),"\n")
-    X[,,k] <- theLife*(0.5) # capture results     
+        
     sqNet <- theLife #write final result to compute next step
 
   } ###Loop Step
@@ -179,7 +179,3 @@ cat("\n\n")
 
 print(Sys.time()-startTime)
 
-startTime <- Sys.time()
-write.gif(X, "zombie.gif",col=jet.colors, delay=50)
-
-cat("\n\n Writing gif  time (s): ",Sys.time()-startTime)
