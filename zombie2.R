@@ -19,9 +19,9 @@ setwd("C:/Users/edbmjtx/Documents/Github")
 #proc.time() - ptm
 
 startTime <- Sys.time()
-iter <- 100
+iter <- 50
 
-m <- 500 # define size
+m <- 50 # define size
 
 
 
@@ -65,7 +65,7 @@ cat ("Iterations Completed: \n")
     if (k >= 100) {name = paste('0', k,'plot.png', sep='')}
     
   
-    png(file = name, width = 480, height = 480, units = "px", pointsize = 12)
+    png(file = name,width=500,height=500)
     
     image(theLife, xlab="", ylab="",col=c("white","red","blue"))
 
